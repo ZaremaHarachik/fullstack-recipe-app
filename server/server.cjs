@@ -2,12 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const userRouter = require('./routes/users.cjs');
 
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
+app.use("/auth", userRouter);
 
 dotenv.config();
 
@@ -21,4 +24,7 @@ const start = async () => {
         console.error(e)
     }
 }
+
+// 
+
 start();
